@@ -1,54 +1,19 @@
-<!-- src/routes/+page.svelte -->
-<script lang="ts">
-	import { enhance } from '$app/forms'
-	import type { ActionData, SubmitFunction } from './$types.js'
-
-	export let form: ActionData;
-
-	let loading = false
-
-	const handleSubmit: SubmitFunction = () => {
-		loading = true
-		return async ({ update }) => {
-			update()
-			loading = false
-		}
-	}
-</script>
-
-<svelte:head>
-	<title>User Management</title>
-</svelte:head>
-
-<form class="row flex flex-center" method="POST" use:enhance={handleSubmit}>
-	<div class="col-6 form-widget">
-		<h1 class="header">Supabase + SvelteKit</h1>
-		<p class="description">Sign in via magic link with your email below</p>
-		{#if form?.message !== undefined}
-		<div class="success {form?.success ? '' : 'fail'}">
-			{form?.message}
-		</div>
-		{/if}
-		<div>
-			<label for="email">Email address</label>
-			<input
-				id="email"
-				name="email"
-				class="inputField"
-				type="email"
-				placeholder="Your email"
-				value={form?.email ?? ''}
-			/>
-		</div>
-		{#if form?.errors?.email}
-		<span class="flex items-center text-sm error">
-			{form?.errors?.email}
-		</span>
-		{/if}
-		<div>
-			<button class="button primary block">
-				{ loading ? 'Loading' : 'Send magic link' }
-			</button>
-		</div>
-	</div>
-</form>
+<section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-col text-center w-full mb-12">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Project X</h1>
+        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">---</p>
+      </div>
+      <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end">
+        <div class="relative flex-grow w-full">
+          <label for="full-name" class="leading-7 text-sm text-gray-600">Full Name</label>
+          <input type="text" id="full-name" name="full-name" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-red-500 focus:bg-transparent focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+        </div>
+        <div class="relative flex-grow w-full">
+          <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
+          <input type="email" id="email" name="email" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-red-500 focus:bg-transparent focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+        </div>
+        <button class="text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg">Button</button>
+      </div>
+    </div>
+  </section>
